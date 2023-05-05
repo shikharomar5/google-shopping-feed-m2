@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement(EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_Dropship
+ * @author    CedCommerce Core Team <connect@cedcommerce.com>
+ * @developer Shikhar Omar
+ * @copyright Copyright CEDCOMMERCE(http://cedcommerce.com/)
+ * @license   http://cedcommerce.com/license-agreement.txt
+ */
+
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="gxpress_accounts" resource="default">
+        <column xsi:type="int" name="id" identity="true" nullable="false" unsigned="true" padding="10" comment="Id"/>
+        <column xsi:type="varchar" name="account_code" nullable="false" length="255" comment="Account Code"/>
+        <column xsi:type="int" name="merchant_id" nullable="false" comment="Account Id"/>
+        <column xsi:type="varchar" name="account_env" nullable="true" length="255" comment="Account Environment"/>
+        <column xsi:type="varchar" name="account_store" nullable="true" length="50" comment="Account Store"/>
+        <column xsi:type="text" name="account_file" nullable="true" comment="Account File"/>
+        <column xsi:type="tinyint" name="account_status" nullable="true" comment="Account Status"/>
+        <column xsi:type="text" name="account_token" nullable="true" comment="Account Token"/>
+        <column xsi:type="varchar" name="content_language" nullable="true" length="10" default="NULL" comment="Content Language"/>
+        <column xsi:type="varchar" name="target_country" nullable="true" length="10" default="NULL" comment="Target Country"/>
+        <column xsi:type="varchar" name="included_destination" nullable="true" length="50" default="NULL" comment="Included Destination"/>
+        <column xsi:type="varchar" name="account_type" nullable="true" length="10" default="NULL" comment="Account Type"/>               
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="account_code">
+            <column name="account_code"/>
+        </constraint>
+    </table>
+
+    <table name="gxpress_attribute" resource="default">
+        <column xsi:type="int" name="id" identity="true" nullable="false" unsigned="true" padding="10" comment="Id"/>
+        <column xsi:type="text" name="gxpress_attribute_name" nullable="false" comment="Name"/>
+        <column xsi:type="text" name="magento_attribute_code" nullable="true" comment="Magento Attribute Code"/>
+        <column xsi:type="text" name="gxpress_attribute_doc" nullable="true" comment="Description"/>
+        <column xsi:type="text" name="is_mapped" nullable="true" comment="Is Mapped"/>
+        <column xsi:type="text" name="gxpress_attribute_enum" nullable="true" comment="Enumerations"/>
+        <column xsi:type="text" name="gxpress_attribute_level" nullable="true" comment="Level"/>
+        <column xsi:type="text" name="gxpress_attribute_type" nullable="true" comment="Type"/>
+        <column xsi:type="text" name="gxpress_attribute_depends_on" nullable="true" comment="Depends on"/>
+        <column xsi:type="text" name="default_value" nullable="true" comment="Default Value"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+    <table name="gxpress_category" resource="default">
+        <column xsi:type="int" name="id" identity="true" nullable="false" unsigned="true" padding="10" comment="Id"/>
+        <column xsi:type="varchar" name="csv_firstlevel_id" nullable="false" length="255" comment="Category first level Id"/>
+        <column xsi:type="varchar" name="csv_secondlevel_id" nullable="false" length="255" comment="Category second level Id"/>
+        <column xsi:type="varchar" name="csv_thirdlevel_id" nullable="false" length="255" comment="Category third level Id"/>
+        <column xsi:type="text" name="csv_fourthlevel_id" nullable="true" comment="Category fourth level Id"/>
+        <column xsi:type="text" name="csv_fifthlevel_id" nullable="true" comment="Category fifth level Id"/>
+        <column xsi:type="text" name="csv_sixthlevel_id" nullable="true" comment="Category sixth level Id"/>
+        <column xsi:type="text" name="csv_seventhlevel_id" nullable="true" comment="Category seventh level Id"/>
+        <column xsi:type="text" name="name" nullable="true" comment="Name"/>
+        <column xsi:type="text" name="path" nullable="true" comment="Path"/>
+        <column xsi:type="int" name="level" nullable="true" comment="Status"/>
+        <column xsi:type="int" name="magento_cat_id" nullable="true" comment="Magento Category Id"/>
+        <column xsi:type="mediumtext" name="gxpress_required_attributes" nullable="true" comment="Required Attributes"/>
+        <column xsi:type="mediumtext" name="gxpress_attributes" nullable="true" comment="Attributes"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+    <table name="gxpress_feeds" resource="default">
+        <column xsi:type="int" name="id" identity="true" nullable="false" unsigned="true" padding="10" comment="Id"/>
+        <column xsi:type="text" name="feed_type" nullable="false" comment="Feed Type"/>
+        <column xsi:type="text" name="feed_source" nullable="false" comment="Feed Source"/>
+        <column xsi:type="datetime" name="feed_date" nullable="true" default="NULL" comment="Feed Date"/>
+        <column xsi:type="text" name="feed_file" nullable="false" comment="Upload File Path"/>
+        <column xsi:type="text" name="feed_errors" nullable="true" comment="Feed Errors"/>
+        <column xsi:type="int" name="account_id" nullable="true" comment="Account Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+    <table name="gxpress_product_change" resource="default">
+        <column xsi:type="int" name="id" identity="true" nullable="false" unsigned="true" padding="10" comment="Id"/>
+        <column xsi:type="int" name="product_id" nullable="false" unsigned="true" comment="Profile Status"/>
+        <column xsi:type="varchar" name="old_value" nullable="true" length="50" comment="Old Value"/>
+        <column xsi:type="varchar" name="new_value" nullable="true" length="50" comment="New Value"/>
+        <column xsi:type="varchar" name="action" nullable="true" length="50" comment="Action"/>
+        <column xsi:type="varchar" name="cron_type" nullable="true" length="50" comment="Cron Type"/>
+        <column xsi:type="int" name="account_id" nullable="true" comment="Account Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+    <table name="gxpress_profile" resource="default">
+        <column xsi:type="int" name="id" identity="true" nullable="false" unsigned="true" padding="10" comment="Id"/>
+        <column xsi:type="int" name="account_id" nullable="true" comment="Account Id"/>
+        <column xsi:type="varchar" name="store_id" nullable="false" length="50" comment="Store Id"/>
+        <column xsi:type="varchar" name="profile_code" nullable="false" length="50" comment="Profile Code"/>
+        <column xsi:type="int" name="profile_status" nullable="true" default="1" unsigned="true" comment="Profile Status"/>
+        <column xsi:type="varchar" name="profile_name" nullable="false"  length="50" comment="Profile Name"/>
+        <column xsi:type="text" name="profile_category" nullable="true" comment="Profile Category"/>
+        <column xsi:type="text" name="profile_cat_attribute" nullable="true" comment="Profile Category Attribute"/>
+        <column xsi:type="text" name="profile_req_opt_attribute" nullable="true" comment="Profile Required And Optional Attribute"/>
+        <column xsi:type="varchar" name="profile_cat_feature" nullable="true"  length="50" comment="Profile Category Feature"/>
+        <column xsi:type="int" name="account_configuration_id" nullable="true" comment="Account Configuration"/>
+        <column xsi:type="varchar" name="conditions_serialized_id" nullable="true" default="NULL" length="10" comment="conditions serialized id"/>                   
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="GXPRESS_PROFILE_PROFILE_CODE">
+            <column name="profile_code"/>
+        </constraint>
+    </table>
+</schema>
